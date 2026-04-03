@@ -1,0 +1,48 @@
+:root {
+    --primary: #232f3e; /* AWS Dark Blue */
+    --accent: #ff9900;  /* AWS Orange */
+    --text: #333;
+    --bg: #f4f4f9;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+header {
+    text-align: center;
+    border-bottom: 2px solid var(--primary);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+h1 { color: var(--primary); margin: 0; }
+h2 { color: var(--primary); border-left: 4px solid var(--accent); padding-left: 10px; }
+
+.contact a { color: var(--accent); text-decoration: none; font-weight: bold; }
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+}
+
+#counter {
+    font-weight: bold;
+    color: var(--accent);
+}
