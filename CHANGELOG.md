@@ -6,10 +6,15 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- [ ] Phase 4: Provision DynamoDB table via Terraform.
 - [ ] Phase 5: Develop Python Lambda function for visitor count logic.
 - [ ] Phase 6: Provision API Gateway and configure CORS.
 - [ ] Phase 7: Automate backend deployment via GitHub Actions.
+
+## [1.2.0] - 2026-04-03
+### Added
+- Provisioned DynamoDB table `VisitorCount` using Terraform with `PAY_PER_REQUEST` billing.
+- Implemented database seeding using `aws_dynamodb_table_item` to initialize the `visitors` record at count `0`.
+- Added `dynamodb_table_name` variable to `variables.tf` and output to `outputs.tf` for backend integration.
 
 ## [1.1.0] - 2026-04-03
 ### Added
