@@ -1,5 +1,9 @@
 name: Deploy Frontend to S3
 
+# Tell GitHub to use the latest Node engine
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 on:
   push:
     branches:
