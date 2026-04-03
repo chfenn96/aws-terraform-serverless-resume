@@ -9,12 +9,12 @@ terraform {
 }
 
 provider "aws" {
-  region = "us-east-1" # CloudFront requires us-east-1 for certain features
+  region = var.region # CloudFront requires us-east-1 for certain features
 }
 
 # 2. Create the S3 Bucket (Storage)
 resource "aws_s3_bucket" "website_bucket" {
-  bucket = "my-cloud-resume-bucket-${random_id.id.hex}" # Must be globally unique
+  bucket = "${var.bucket_name_prefix}-${random_id.id.hex}"
 }
 
 resource "random_id" "id" {
@@ -94,14 +94,4 @@ resource "aws_s3_bucket_policy" "allow_cloudfront" {
       }
     }
   })
-}
-
-# 7. Output the URL
-output "website_url" {
-  value = aws_cloudfront_distribution.s3_distribution.domain_name
-}
-
-# 8. Output the Bucket
-output "bucket_name" {
-  value = aws_s3_bucket.website_bucket.id
 }
