@@ -37,9 +37,9 @@ This project follows a monorepo structure to keep the full system architecture i
 
 ## 🚀 Development Roadmap
 - [x] Initialize project skeleton and document architecture.
-- [ ] Write Terraform code for secure S3 bucket and CloudFront distribution.
-- [ ] Configure custom domain (Route 53) and HTTPS (ACM).
-- [ ] Build and deploy static HTML/CSS frontend.
+- [x] Write Terraform code for secure S3 bucket and CloudFront distribution.
+- [x] Configure custom domain (Route 53) and HTTPS (ACM).
+- [x] Build and deploy static HTML/CSS frontend.
 - [ ] Write Terraform code for DynamoDB table.
 - [ ] Develop Python Lambda function to interact with database.
 - [ ] Provision API Gateway and configure CORS.
