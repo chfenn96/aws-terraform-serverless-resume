@@ -95,3 +95,26 @@ resource "aws_s3_bucket_policy" "allow_cloudfront" {
     }
   })
 }
+
+# 7. Create the DynamoDB Table (The Database)
+resource "aws_dynamodb_table" "visitor_count" {
+  name           = var.dynamodb_table_name
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "id"
+
+  attribute {
+    name = "id"
+    type = "S" # "S" stands for String
+  }
+}
+
+# 8. Seed the initial record into DynamoDB
+resource "aws_dynamodb_table_item" "init_count" {
+  table_name = aws_dynamodb_table.visitor_count.name
+  hash_key   = aws_dynamodb_table.visitor_count.hash_key
+
+  item = jsonencode({
+    "id":    {"S": "visitors"},
+    "count": {"N": "0"}
+  })
+}

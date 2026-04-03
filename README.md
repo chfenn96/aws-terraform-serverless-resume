@@ -38,7 +38,7 @@ To demonstrate modern DevOps and Cloud Engineering practices, **100% of the clou
 - [x] Write Terraform code for secure S3 bucket and CloudFront distribution.
 - [x] Build and deploy static HTML/CSS frontend.
 - [x] Implement GitHub Actions for automated frontend S3 synchronization.
-- [ ] Write Terraform code for DynamoDB table.
+- [x] Write Terraform code for DynamoDB table.
 - [ ] Develop Python Lambda function to interact with database.
 - [ ] Provision API Gateway and configure CORS.
 - [ ] Connect frontend JavaScript to backend API.
