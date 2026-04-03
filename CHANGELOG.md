@@ -6,9 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- [ ] Phase 5: Develop Python Lambda function for visitor count logic.
 - [ ] Phase 6: Provision API Gateway and configure CORS.
 - [ ] Phase 7: Automate backend deployment via GitHub Actions.
+
+## [1.3.0] - 2026-04-03
+### Added
+- Python Lambda function (`app.py`) featuring an atomic counter for DynamoDB.
+- Infrastructure as Code for Lambda execution (IAM Roles, Policies, and Function).
+- Provisioned Amazon API Gateway (HTTP API) with CORS configuration.
+- Lambda-to-API Gateway integration and execution permissions.
+- Terraform output for API Gateway Invoke URL.
+
+### Changed
+- Refactored `main.tf` to include Backend and API Gateway infrastructure.
 
 ## [1.2.0] - 2026-04-03
 ### Added
