@@ -16,36 +16,36 @@ To demonstrate modern DevOps and Cloud Engineering practices, **100% of the clou
 **Frontend Architecture:**
 * **Storage:** AWS S3 (Static Website Hosting)
 * **CDN & Security:** AWS CloudFront with Origin Access Control (OAC)
-* **DNS & SSL:** AWS Route 53 and AWS Certificate Manager (ACM)
+* **DNS & SSL:** AWS CloudFront Default Certificate (HTTPS) / *Route 53 + ACM (Planned Upgrade)*
 
 **Backend Architecture:**
-* **Compute:** AWS Lambda (Python 3.x)
+* **Compute:** AWS Lambda (Python 3.12)
 * **API Routing:** Amazon API Gateway (HTTP API)
 * **Database:** Amazon DynamoDB (NoSQL)
 
 ## 📂 Repository Structure (Monorepo)
-This project follows a monorepo structure to keep the full system architecture in a single, easily navigable location.
-
 ```text
 .
 ├── frontend/             # HTML, CSS, and Vanilla JavaScript
-├── backend/              # Python application code for AWS Lambda
-├── infrastructure/       # Terraform files (.tf) for all AWS resources
-├── .github/workflows/    # CI/CD automation pipelines
+├── backend/              # Python application code (AWS Lambda)
+├── terraform/            # Infrastructure as Code (.tf files)
+├── .github/workflows/    # CI/CD automation (GitHub Actions)
 └── README.md
 ```
 
 ## 🚀 Development Roadmap
 - [x] Initialize project skeleton and document architecture.
 - [x] Write Terraform code for secure S3 bucket and CloudFront distribution.
-- [x] Configure custom domain (Route 53) and HTTPS (ACM).
 - [x] Build and deploy static HTML/CSS frontend.
+- [x] Implement GitHub Actions for automated frontend S3 synchronization.
 - [ ] Write Terraform code for DynamoDB table.
 - [ ] Develop Python Lambda function to interact with database.
 - [ ] Provision API Gateway and configure CORS.
 - [ ] Connect frontend JavaScript to backend API.
 - [ ] Implement GitHub Actions for automated Terraform deployment.
-- [ ] Implement GitHub Actions for automated frontend S3 synchronization.
+- [ ] Configure custom domain (Route 53) and HTTPS (ACM). *(Planned Upgrade)*
 
 ## 🛠️ How to Deploy (Local Development)
-*Deployment instructions and infrastructure variables will be documented here once the CI/CD pipeline is finalized.*
+1. **Infrastructure:** Navigate to `/terraform`, run `terraform init` and `terraform apply`.
+2. **Frontend:** Changes pushed to the `main` branch automatically sync to S3 via GitHub Actions.
+3. **Backend:** Current logic is handled via Python 3.12 in the `/backend` directory.
