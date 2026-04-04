@@ -16,7 +16,6 @@ terraform {
       version = "~> 2.0"
     }
   }
-  }
 
 backend "s3" {
     bucket         = "terraform-state-e8ccf23d" 

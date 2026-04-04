@@ -41,4 +41,4 @@ def lambda_handler(event, context):
         }
 
 
-# Trigger CD
+# Trigger
