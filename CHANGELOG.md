@@ -8,6 +8,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - [ ] Phase 9: Final Polish.
 
+## [1.8.2] - 2026-04-04
+### Changed
+- **Documentation:** Overhauled the "Architecture Design" section in `README.md` to use a Mermaid.js diagram.
+
+
 ## [1.8.1] - 2026-04-04
 ### Added
 - **Dependency Management:** Created `backend/requirements.txt` to ensure deterministic Python environments across local and CI/CD runners.

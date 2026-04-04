@@ -11,7 +11,6 @@ This repository contains my implementation of the [Cloud Resume Challenge](https
 To demonstrate modern DevOps and Cloud Engineering practices, **100% of the cloud infrastructure is provisioned using Terraform** and deployments are fully automated via **GitHub Actions**.
 
 ## 🏗️ Architecture Design
-*(Note: A formal architectural diagram will be added here upon project completion).*
 
 **Frontend Architecture:**
 * **Storage:** AWS S3 (Static Website Hosting)
@@ -22,6 +21,36 @@ To demonstrate modern DevOps and Cloud Engineering practices, **100% of the clou
 * **Compute:** AWS Lambda (Python 3.12)
 * **API Routing:** Amazon API Gateway (HTTP API)
 * **Database:** Amazon DynamoDB (NoSQL)
+
+```mermaid
+graph TD
+    subgraph "Frontend (Static)"
+        User((User)) -->|HTTPS| CF[Amazon CloudFront]
+        CF -->|OAC Access| S3_WEB[(Amazon S3 Bucket)]
+    end
+
+    subgraph "Backend (Serverless)"
+        User -->|REST API Call| AGW[Amazon API Gateway]
+        AGW -->|Triggers| LAM[AWS Lambda - Python]
+        LAM -->|Atomic Update| DDB[(Amazon DynamoDB)]
+    end
+
+    subgraph "DevOps & IaC"
+        Dev[Developer] -->|Push Code| GH[GitHub Repository]
+        GH -->|Triggers| GHA[GitHub Actions]
+        GHA -->|OIDC Auth| AWS_IAM[AWS IAM Role]
+        GHA -->|Terraform Apply| AWS_RES[AWS Resources]
+        AWS_RES -->|State Sync| S3_STATE[(S3 Remote State)]
+        AWS_RES -->|State Lock| DDB_LOCK[(DynamoDB Lock)]
+    end
+
+    style CF fill:#FF9900,stroke:#fff,color:#fff
+    style S3_WEB fill:#3F8624,stroke:#fff,color:#fff
+    style AGW fill:#A166FF,stroke:#fff,color:#fff
+    style LAM fill:#F5D142,stroke:#333,color:#333
+    style DDB fill:#405B8C,stroke:#fff,color:#fff
+    style GHA fill:#2088FF,stroke:#fff,color:#fff
+```
 
 ## 📂 Repository Structure (Monorepo)
 ```text
