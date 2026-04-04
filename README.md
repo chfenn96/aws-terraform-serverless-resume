@@ -44,12 +44,9 @@ To demonstrate modern DevOps and Cloud Engineering practices, **100% of the clou
 - [x] **Phase 5:** Backend Logic (Python Lambda + API Gateway).
 - [x] **Phase 6:** Frontend-Backend Integration.
 - [x] **Phase 7:** Infrastructure Hardening.
+- [x] **Phase 8:** Backend CI/CD & Testing.
 
 #### **🟠 CURRENT FOCUS: DevOps Maturity & Polishing**
-- [ ] **Phase 8: Backend CI/CD & Testing**
-    *   Write **Pytest** units for the Lambda function.
-    *   Create `backend-deploy.yml` GitHub Action.
-    *   Add **Linting** (TFLint/Black) to the pipeline.
 - [ ] **Phase 9: Final Polish**
     *   Custom Domain setup (Route 53 + ACM).
     *   Create a professional Architecture Diagram for the README.
