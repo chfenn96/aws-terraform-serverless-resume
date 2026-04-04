@@ -1,22 +1,15 @@
+const API_URL = 'https://1nanbtwnm5.execute-api.us-east-1.amazonaws.com';
+
 window.addEventListener('DOMContentLoaded', (event) => {
     getVisitCount();
 });
 
-const apiApiGateway = ''; // WE WILL PASTE THE API URL HERE IN PHASE 5
-
 const getVisitCount = () => {
-    let count = 30; // Default fallback for now
-    fetch(apiApiGateway)
-        .then(response => {
-            return response.json()
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            console.log("API Success:", data);
+            document.getElementById('counter').innerText = data.count;
         })
-        .then(response => {
-            console.log("Website called function. API returned: ", response);
-            count = response.count;
-            document.getElementById('counter').innerText = count;
-        }).catch(function (error) {
-            console.log(error);
-            document.getElementById('counter').innerText = "Running Locally";
-        });
-    return count;
+        .catch(error => console.error("API Error:", error));
 }
