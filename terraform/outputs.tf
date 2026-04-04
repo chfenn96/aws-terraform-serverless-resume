@@ -27,3 +27,7 @@ output "api_url" {
   description = "The Invoke URL for the API Gateway"
   value       = aws_apigatewayv2_api.http_api.api_endpoint
 }
+
+output "state_bucket_name" {
+  value = aws_s3_bucket.terraform_state.id
+}

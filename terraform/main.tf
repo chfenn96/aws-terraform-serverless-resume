@@ -6,6 +6,14 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+backend "s3" {
+    bucket         = "terraform-state-e8ccf23d" 
+    key            = "global/s3/terraform.tfstate"
+    region         = "us-east-1"
+    dynamodb_table = "terraform-state-locking" # THE ACTUAL NAME
+    encrypt        = true
+  }
 }
 
 provider "aws" {
@@ -195,11 +203,16 @@ resource "aws_apigatewayv2_route" "default_route" {
   target    = "integrations/${aws_apigatewayv2_integration.lambda_integration.id}"
 }
 
-# 16. API Gateway Stage (Automated Deployment)
+# 16. API Gateway Stage (Updated with Throttling)
 resource "aws_apigatewayv2_stage" "default_stage" {
   api_id      = aws_apigatewayv2_api.http_api.id
   name        = "$default"
   auto_deploy = true
+
+  default_route_settings {
+    throttling_burst_limit = 10
+    throttling_rate_limit  = 10
+  }
 }
 
 # 17. Permission for API Gateway to call Lambda
@@ -209,4 +222,33 @@ resource "aws_lambda_permission" "api_gw" {
   function_name = aws_lambda_function.visitor_counter.function_name
   principal     = "apigateway.amazonaws.com"
   source_arn    = "${aws_apigatewayv2_api.http_api.execution_arn}/*/*"
+}
+
+# 18. S3 Bucket for Terraform State
+resource "aws_s3_bucket" "terraform_state" {
+  bucket = "${var.state_bucket_prefix}-${random_id.id.hex}" # Uses variable
+  
+  lifecycle {
+    prevent_destroy = true
+  }
+}
+
+# 19. Enable Versioning for State Files (Allows recovery if state is corrupted)
+resource "aws_s3_bucket_versioning" "state_versioning" {
+  bucket = aws_s3_bucket.terraform_state.id
+  versioning_configuration {
+    status = "Enabled"
+  }
+}
+
+# 20. DynamoDB Table for State Locking (Prevents two people from running terraform at once)
+resource "aws_dynamodb_table" "terraform_locks" {
+  name         = var.state_lock_table_name
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
+
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
 }
