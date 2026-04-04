@@ -6,8 +6,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- [ ] Phase 8: Backend CI/CD & Testing.
 - [ ] Phase 9: Final Polish.
+
+## [1.7.0] - 2026-04-04
+### Added
+- **Integrated Backend CI/CD Pipeline:** Created GitHub Actions workflow for automated testing and deployment.
+- **Quality Gatekeeping:** Implementation of a `needs: [test]` dependency, ensuring zero deployments of failed logic.
+- **Automated IaC Lifecycle:** Full automation of `terraform init/plan/apply` via GitHub Actions utilizing OIDC.
 
 ## [1.6.0] - 2026-04-04
 ### Added
