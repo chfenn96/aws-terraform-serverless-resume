@@ -44,7 +44,7 @@ To demonstrate modern DevOps and Cloud Engineering practices, **100% of the clou
 - [x] **Phase 6:** Frontend-Backend Integration.
 
 #### **🟠 CURRENT FOCUS: Integration & Enterprise Hardening**
-- [ ] **Phase 7: Infrastructure Hardening (The "Pro" Upgrade)**
+- [ ] **Phase 7: Infrastructure Hardening**
     *   **Remote State:** Move `terraform.tfstate` from E: drive to S3/DynamoDB.
     *   **OIDC Identity:** Replace GitHub Access Keys with Secretless OIDC Roles.
     *   **API Throttling:** Add Rate Limiting to Terraform to prevent cost spikes.
