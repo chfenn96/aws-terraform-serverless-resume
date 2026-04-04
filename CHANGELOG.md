@@ -8,6 +8,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - [ ] Phase 9: Final Polish.
 
+## [1.8.0] - 2026-04-04
+### Added
+- **Fail-Fast CI/CD Pipeline:** Implemented a multi-stage GitHub Actions workflow for the backend and infrastructure.
+- **Python Code Quality:** Integrated `Flake8` for static analysis and `Black` for automated code formatting.
+- **Infrastructure Linting:** Integrated `TFLint` to enforce Terraform best practices and prevent configuration errors.
+- **Monorepo Configuration:** Established a `.flake8` root configuration to standardize 88-character line limits across all subdirectories.
+
+### Changed
+- **Pipeline Architecture:** Reorganized GitHub Actions into a dependent job graph (`Lint` ➔ `Test` ➔ `Deploy`) to ensure code quality before execution.
+- **Automated Deployment:** Enabled automated `terraform apply` via OIDC, triggered only upon successful linting and 100% test coverage.
+- **Path-Scoped Triggers:** Optimized workflows to only execute when changes are detected in relevant `/backend` or `/terraform` directories.
+
+### Fixed
+- Resolved E501 line-length conflicts between Flake8 and Black by standardizing the project-wide limit to 88 characters.
+- Fixed path-scoping issues in the CI runner by centralizing linting configurations in the project root.
+
 ## [1.7.0] - 2026-04-04
 ### Added
 - **Integrated Backend CI/CD Pipeline:** Created GitHub Actions workflow for automated testing and deployment.
