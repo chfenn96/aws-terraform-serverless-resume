@@ -34,16 +34,30 @@ To demonstrate modern DevOps and Cloud Engineering practices, **100% of the clou
 ```
 
 ## 🚀 Development Roadmap
-- [x] Initialize project skeleton and document architecture.
-- [x] Write Terraform code for secure S3 bucket and CloudFront distribution.
-- [x] Build and deploy static HTML/CSS frontend.
-- [x] Implement GitHub Actions for automated frontend S3 synchronization.
-- [x] Write Terraform code for DynamoDB table.
-- [x] Develop Python Lambda function to interact with database.
-- [x] Provision API Gateway and configure CORS.
-- [ ] Connect frontend JavaScript to backend API.
-- [ ] Implement GitHub Actions for automated Terraform deployment.
-- [ ] Configure custom domain (Route 53) and HTTPS (ACM). *(Planned Upgrade)*
+
+#### **🟢 COMPLETED**
+- [x] **Phase 1:** Project Foundation (S3, CloudFront, Terraform Setup).
+- [x] **Phase 2:** Frontend Infrastructure (OAC, S3, CloudFront).
+- [x] **Phase 3:** Frontend Code & Basic CI/CD (HTML/CSS/JS + GitHub Actions).
+- [x] **Phase 4:** Database Infrastructure (DynamoDB + Seeding).
+- [x] **Phase 5:** Backend Logic (Python Lambda + API Gateway).
+- [x] **Phase 6:** Frontend-Backend Integration.
+
+#### **🟠 CURRENT FOCUS: Integration & Enterprise Hardening**
+- [ ] **Phase 7: Infrastructure Hardening (The "Pro" Upgrade)**
+    *   **Remote State:** Move `terraform.tfstate` from E: drive to S3/DynamoDB.
+    *   **OIDC Identity:** Replace GitHub Access Keys with Secretless OIDC Roles.
+    *   **API Throttling:** Add Rate Limiting to Terraform to prevent cost spikes.
+
+#### **🔵 UPCOMING: DevOps Maturity & Polishing**
+- [ ] **Phase 8: Backend CI/CD & Testing**
+    *   Write **Pytest** units for the Lambda function.
+    *   Create `backend-deploy.yml` GitHub Action.
+    *   Add **Linting** (TFLint/Black) to the pipeline.
+- [ ] **Phase 9: Final Polish**
+    *   Custom Domain setup (Route 53 + ACM).
+    *   Create a professional Architecture Diagram for the README.
+    *   Finalize `CHANGELOG.md` for v2.0.0 (Full Release).
 
 ## 🛠️ How to Deploy (Local Development)
 1. **Infrastructure:** Navigate to `/terraform`, run `terraform init` and `terraform apply`.
