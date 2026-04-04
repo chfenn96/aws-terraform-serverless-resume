@@ -8,6 +8,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - [ ] Phase 9: Final Polish.
 
+## [1.8.1] - 2026-04-04
+### Added
+- **Dependency Management:** Created `backend/requirements.txt` to ensure deterministic Python environments across local and CI/CD runners.
+
+### Changed
+- **CI/CD Optimization:** Refactored backend-deploy workflow to install dependencies via requirements file.
+- **Documentation:** Overhauled the "How to Deploy" section in `README.md` to document the **GitOps** deployment model and OIDC prerequisites.
+
+### Fixed
+- Standardized local development setup instructions to align with the remote Terraform backend.
+
 ## [1.8.0] - 2026-04-04
 ### Added
 - **Fail-Fast CI/CD Pipeline:** Implemented a multi-stage GitHub Actions workflow for the backend and infrastructure.
