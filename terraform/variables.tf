@@ -27,3 +27,9 @@ variable "state_lock_table_name" {
   type        = string
   default     = "terraform-state-locking"
 }
+
+variable "github_repo" {
+  description = "The GitHub repository name (e.g., username/repo-name)"
+  type        = string
+  default     = "chfenn96/aws-terraform-serverless-resume"
+}

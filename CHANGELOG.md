@@ -6,9 +6,28 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- [ ] Phase 7: Automate backend deployment via GitHub Actions.
 - [ ] Phase 8: Backend CI/CD & Testing.
 - [ ] Phase 9: Final Polish.
+
+## [1.5.1] - 2026-04-04
+### Documentation
+- Updated README development roadmap to reflect completion of hardening phases.
+
+## [1.5.0] - 2026-04-04
+### Added
+- **OIDC Identity Federation:** Provisioned IAM OIDC Provider and Role for GitHub Actions to enable secretless AWS authentication.
+- **Remote Terraform Backend:** S3 bucket for encrypted state storage and DynamoDB for state locking to prevent concurrent deployment conflicts.
+- **API Throttling:** Implemented Rate Limiting (10 RPS) on API Gateway to prevent cost abuse and DDoS vectors.
+- **Enhanced Outputs:** Refactored `outputs.tf` with technical descriptions for Frontend, Backend, and Security resources.
+
+### Changed
+- **CI/CD Security:** Migrated GitHub Actions from long-lived IAM Access Keys to temporary, short-lived OIDC tokens.
+- **Infrastructure Source of Truth:** Successfully migrated `terraform.tfstate` from local storage to the AWS S3 remote backend.
+- **Variable Injection:** Centralized GitHub repository naming and AWS regions within `variables.tf`.
+
+### Security
+- Eliminated long-lived credentials in GitHub Secrets to reduce the attack surface.
+- Enabled S3 Bucket Versioning on the state bucket for point-in-time infrastructure recovery.
 
 ## [1.4.0] - 2026-04-04
 ### Added

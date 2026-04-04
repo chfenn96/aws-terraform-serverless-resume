@@ -252,3 +252,39 @@ resource "aws_dynamodb_table" "terraform_locks" {
     type = "S"
   }
 }
+
+# 21. Create the OIDC Provider for GitHub
+resource "aws_iam_openid_connect_provider" "github" {
+  url             = "https://token.actions.githubusercontent.com"
+  client_id_list  = ["sts.amazonaws.com"]
+  thumbprint_list = ["1c587730278358479a3bc98d92e57b63d13939a0"] # Standard GitHub Thumbprint
+}
+
+# 22. Create the IAM Role for GitHub Actions
+resource "aws_iam_role" "github_actions_role" {
+  name = "github-actions-oidc-role"
+
+  # The Trust Policy: Only allow YOUR repo to assume this role
+  assume_role_policy = jsonencode({
+    Version = "2012-10-17"
+    Statement = [{
+      Action = "sts:AssumeRoleWithWebIdentity"
+      Effect = "Allow"
+      Principal = {
+        Federated = aws_iam_openid_connect_provider.github.arn
+      }
+      Condition = {
+        StringLike = {
+          "token.actions.githubusercontent.com:sub" = "repo:${var.github_repo}:*"
+        }
+      }
+    }]
+  })
+}
+
+# 23. Attach Permissions to the GitHub Role
+# We will give it full access for now so it can run Terraform and S3 Syncs
+resource "aws_iam_role_policy_attachment" "github_admin" {
+  role       = aws_iam_role.github_actions_role.name
+  policy_arn = "arn:aws:iam::aws:policy/AdministratorAccess"
+}

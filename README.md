@@ -30,6 +30,7 @@ To demonstrate modern DevOps and Cloud Engineering practices, **100% of the clou
 ├── backend/              # Python application code (AWS Lambda)
 ├── terraform/            # Infrastructure as Code (.tf files)
 ├── .github/workflows/    # CI/CD automation (GitHub Actions)
+├── CHANGELOG.md    
 └── README.md
 ```
 
@@ -42,14 +43,9 @@ To demonstrate modern DevOps and Cloud Engineering practices, **100% of the clou
 - [x] **Phase 4:** Database Infrastructure (DynamoDB + Seeding).
 - [x] **Phase 5:** Backend Logic (Python Lambda + API Gateway).
 - [x] **Phase 6:** Frontend-Backend Integration.
+- [x] **Phase 7:** Infrastructure Hardening.
 
-#### **🟠 CURRENT FOCUS: Integration & Enterprise Hardening**
-- [ ] **Phase 7: Infrastructure Hardening (The "Pro" Upgrade)**
-    *   **Remote State:** Move `terraform.tfstate` from E: drive to S3/DynamoDB.
-    *   **OIDC Identity:** Replace GitHub Access Keys with Secretless OIDC Roles.
-    *   **API Throttling:** Add Rate Limiting to Terraform to prevent cost spikes.
-
-#### **🔵 UPCOMING: DevOps Maturity & Polishing**
+#### **🟠 CURRENT FOCUS: DevOps Maturity & Polishing**
 - [ ] **Phase 8: Backend CI/CD & Testing**
     *   Write **Pytest** units for the Lambda function.
     *   Create `backend-deploy.yml` GitHub Action.
