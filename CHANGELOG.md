@@ -9,6 +9,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [ ] Phase 8: Backend CI/CD & Testing.
 - [ ] Phase 9: Final Polish.
 
+## [1.6.0] - 2026-04-04
+### Added
+- **Unit Testing Suite:** Implemented `pytest` with `moto` to mock AWS DynamoDB services for isolated backend testing.
+- **Complete Test Coverage:** Achieved 100% logic coverage, including "Happy Path" (successful increments), "Empty Table" (initialization), and "System Failure" (error handling) scenarios.
+- **Testing Dependencies:** Integrated `pytest-cov` for automated coverage reporting.
+
+### Changed
+- **Backend Refactoring:** Modularized `app.py` to use a lazy-loading initialization pattern for the DynamoDB resource, improving testability and Lambda cold-start performance.
+- **Robust Error Handling:** Added `try-except` blocks to `lambda_handler` to ensure clean 500-level JSON responses during service disruptions.
+
 ## [1.5.1] - 2026-04-04
 ### Documentation
 - Updated README development roadmap to reflect completion of hardening phases.
