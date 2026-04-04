@@ -42,7 +42,7 @@ jobs:
       - name: Terraform Lint (TFLint)
         run: |
           tflint --init
-          tflint -f compact terraform/
+          tflint --chdir=terraform/ -f compact
 
   # JOB 2: Test the Python Code (Only if Lint passes)
   test:
