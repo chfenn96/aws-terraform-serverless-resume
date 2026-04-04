@@ -44,18 +44,40 @@ To demonstrate modern DevOps and Cloud Engineering practices, **100% of the clou
 - [x] **Phase 5:** Backend Logic (Python Lambda + API Gateway).
 - [x] **Phase 6:** Frontend-Backend Integration.
 - [x] **Phase 7:** Infrastructure Hardening.
+- [x] **Phase 8:** Backend CI/CD & Testing.
 
 #### **🟠 CURRENT FOCUS: DevOps Maturity & Polishing**
-- [ ] **Phase 8: Backend CI/CD & Testing**
-    *   Write **Pytest** units for the Lambda function.
-    *   Create `backend-deploy.yml` GitHub Action.
-    *   Add **Linting** (TFLint/Black) to the pipeline.
 - [ ] **Phase 9: Final Polish**
     *   Custom Domain setup (Route 53 + ACM).
     *   Create a professional Architecture Diagram for the README.
     *   Finalize `CHANGELOG.md` for v2.0.0 (Full Release).
 
-## 🛠️ How to Deploy (Local Development)
-1. **Infrastructure:** Navigate to `/terraform`, run `terraform init` and `terraform apply`.
-2. **Frontend:** Changes pushed to the `main` branch automatically sync to S3 via GitHub Actions.
-3. **Backend:** Current logic is handled via Python 3.12 in the `/backend` directory.
+## 🛠️ How to Deploy
+
+This project uses a **GitOps** workflow. Manual deployments from local machines are discouraged to ensure infrastructure consistency.
+
+### 1. Prerequisites
+* **AWS Account** with a configured IAM OIDC Provider.
+* **GitHub Repository Secrets**:
+    * `AWS_OIDC_ROLE_ARN`: The ARN of the IAM role for GitHub to assume.
+    * `S3_BUCKET_NAME`: The name of the frontend assets bucket.
+    * `CLOUDFRONT_DISTRIBUTION_ID`: For automated cache invalidations.
+
+### 2. The Deployment Pipeline
+Infrastructure and code changes are managed through a three-stage **Fail-Fast** pipeline:
+1. **Linting:** Static analysis of Python (`flake8`, `black`) and Terraform (`tflint`).
+2. **Testing:** Unit tests via `pytest` with 100% logic coverage using `moto` for AWS mocking.
+3. **Deployment:** If tests pass, Terraform automatically initializes, plans, and applies changes to the AWS environment using OIDC secretless authentication.
+
+### 3. Local Development (Optional)
+If you must run the project locally for testing:
+```bash
+# Initialize Terraform with the Remote S3 Backend
+cd terraform
+terraform init
+
+# Run Python Tests
+cd ../backend
+pip install -r requirements.txt
+pytest
+```

@@ -6,8 +6,50 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
-- [ ] Phase 8: Backend CI/CD & Testing.
 - [ ] Phase 9: Final Polish.
+
+## [1.8.1] - 2026-04-04
+### Added
+- **Dependency Management:** Created `backend/requirements.txt` to ensure deterministic Python environments across local and CI/CD runners.
+
+### Changed
+- **CI/CD Optimization:** Refactored backend-deploy workflow to install dependencies via requirements file.
+- **Documentation:** Overhauled the "How to Deploy" section in `README.md` to document the **GitOps** deployment model and OIDC prerequisites.
+
+### Fixed
+- Standardized local development setup instructions to align with the remote Terraform backend.
+
+## [1.8.0] - 2026-04-04
+### Added
+- **Fail-Fast CI/CD Pipeline:** Implemented a multi-stage GitHub Actions workflow for the backend and infrastructure.
+- **Python Code Quality:** Integrated `Flake8` for static analysis and `Black` for automated code formatting.
+- **Infrastructure Linting:** Integrated `TFLint` to enforce Terraform best practices and prevent configuration errors.
+- **Monorepo Configuration:** Established a `.flake8` root configuration to standardize 88-character line limits across all subdirectories.
+
+### Changed
+- **Pipeline Architecture:** Reorganized GitHub Actions into a dependent job graph (`Lint` ➔ `Test` ➔ `Deploy`) to ensure code quality before execution.
+- **Automated Deployment:** Enabled automated `terraform apply` via OIDC, triggered only upon successful linting and 100% test coverage.
+- **Path-Scoped Triggers:** Optimized workflows to only execute when changes are detected in relevant `/backend` or `/terraform` directories.
+
+### Fixed
+- Resolved E501 line-length conflicts between Flake8 and Black by standardizing the project-wide limit to 88 characters.
+- Fixed path-scoping issues in the CI runner by centralizing linting configurations in the project root.
+
+## [1.7.0] - 2026-04-04
+### Added
+- **Integrated Backend CI/CD Pipeline:** Created GitHub Actions workflow for automated testing and deployment.
+- **Quality Gatekeeping:** Implementation of a `needs: [test]` dependency, ensuring zero deployments of failed logic.
+- **Automated IaC Lifecycle:** Full automation of `terraform init/plan/apply` via GitHub Actions utilizing OIDC.
+
+## [1.6.0] - 2026-04-04
+### Added
+- **Unit Testing Suite:** Implemented `pytest` with `moto` to mock AWS DynamoDB services for isolated backend testing.
+- **Complete Test Coverage:** Achieved 100% logic coverage, including "Happy Path" (successful increments), "Empty Table" (initialization), and "System Failure" (error handling) scenarios.
+- **Testing Dependencies:** Integrated `pytest-cov` for automated coverage reporting.
+
+### Changed
+- **Backend Refactoring:** Modularized `app.py` to use a lazy-loading initialization pattern for the DynamoDB resource, improving testability and Lambda cold-start performance.
+- **Robust Error Handling:** Added `try-except` blocks to `lambda_handler` to ensure clean 500-level JSON responses during service disruptions.
 
 ## [1.5.1] - 2026-04-04
 ### Documentation
