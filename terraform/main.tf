@@ -1,17 +1,28 @@
 # 1. Specify the Provider
 terraform {
+  required_version = ">= 1.0" # FIXES Issue 3
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.0"
     }
+    random = { # FIXES Issue 1
+      source  = "hashicorp/random"
+      version = "~> 3.0"
+    }
+    archive = { # FIXES Issue 2
+      source  = "hashicorp/archive"
+      version = "~> 2.0"
+    }
+  }
   }
 
 backend "s3" {
     bucket         = "terraform-state-e8ccf23d" 
     key            = "global/s3/terraform.tfstate"
     region         = "us-east-1"
-    dynamodb_table = "terraform-state-locking" # THE ACTUAL NAME
+    dynamodb_table = "terraform-state-locking"
     encrypt        = true
   }
 }
@@ -165,7 +176,7 @@ resource "aws_iam_role_policy" "lambda_dynamo_policy" {
 
 # 12. Create the Lambda Function
 resource "aws_lambda_function" "visitor_counter" {
-  filename      = "lambda_function.zip"
+  filename      = data.archive_file.lambda_zip.output_path
   function_name = "visitor_counter_func"
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = "app.lambda_handler" # File name is app, function is lambda_handler
