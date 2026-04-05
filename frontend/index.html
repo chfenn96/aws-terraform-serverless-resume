@@ -3,42 +3,154 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cloud Resume | Christian Fenne</title>
+    <meta name="description" content="Cloud Engineer & DevOps Professional Resume">
+    <title>Cloud Engineer Resume | Christian Fenn</title>
     <link rel="stylesheet" href="style.css">
+    
+    <!-- Deep JSON-LD Schema for AI Crawlers and ATS Parsers -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Christian Fenn",
+        "jobTitle": "Remote Cloud & DevOps Engineer",
+        "url": "https://your-custom-domain.com",
+        "email": "christian@chfenn.dev",
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": "Savannah",
+            "addressRegion": "GA",
+            "addressCountry": "US"
+        },
+        "sameAs":[
+            "https://linkedin.com/in/test",
+            "https://github.com/test"
+        ],
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "Florida Atlantic University"
+        },
+        "hasCredential":[
+            {
+                "@type": "EducationalOccupationalCredential",
+                "name": "Bachelor of Science in Computer Science",
+                "credentialCategory": "degree",
+                "educationalLevel": "Bachelor",
+                "abstract": "Focused on software engineering, distributed systems, and cloud computing.",
+                "recognizedBy": {
+                    "@type": "EducationalOrganization",
+                    "name": "Florida Atlantic University"
+                }
+            },
+            {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "Certification",
+                "name": "AWS Certified Solutions Architect – Associate"
+            },
+            {
+                "@type": "EducationalOccupationalCredential",
+                "credentialCategory": "Certification",
+                "name": "HashiCorp Certified: Terraform Associate"
+            }
+        ],
+        "knowsAbout":["AWS", "Terraform", "Python", "CI/CD", "GitHub Actions", "Serverless Architecture", "DynamoDB", "OIDC"]
+    }
+    </script>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>Christian Fenn</h1>
-            <p>Cloud Engineer | BS Computer Science</p>
-            <div class="contact">
-                <a href="mailto:example@email.com">Email</a> | 
-                <a href="https://linkedin.com/in/">LinkedIn</a> | 
-                <a href="https://github.com/">GitHub</a>
+            <div class="header-content">
+                <h1>Christian Fenn</h1>
+                <h2>Cloud Engineer | DevOps Specialist</h2>
+                <div class="contact-links">
+                    <span>Savannah, GA (Remote)</span> &bull; 
+                    <a href="mailto:christian@chfenn.dev">Email</a> &bull; 
+                    <a href="https://linkedin.com/in/test" target="_blank">LinkedIn</a> &bull; 
+                    <a href="https://github.com/test" target="_blank">GitHub</a>
+                </div>
             </div>
         </header>
 
-        <section id="experience">
-            <h2>Experience</h2>
-            <div class="entry">
-                <h3>Cloud Project: Resume Challenge</h3>
-                <p>Built a serverless architecture on AWS using Terraform, Lambda, and DynamoDB.</p>
-            </div>
-        </section>
+        <main>
+            <section id="summary" class="resume-section">
+                <h3>Professional Summary</h3>
+                <p>Computer Science graduate specializing in cloud infrastructure and automated deployments. Passionate about building secure, highly-available architectures using AWS and Terraform. Seeking a remote Cloud/DevOps role to leverage skills in Infrastructure as Code (IaC), CI/CD automation, and serverless application development.</p>
+            </section>
 
-        <section id="education">
-            <h2>Education</h2>
-            <div class="entry">
-                <h3>BS in Computer Science</h3>
-                <p>Florida Atlantic University | Graduated 202X</p>
-            </div>
-        </section>
+            <section id="certifications" class="resume-section">
+                <h3>Certifications</h3>
+                <ul class="cert-list">
+                    <li><strong>AWS Certified Solutions Architect – Associate</strong> <span>(Expected/Completed 2026)</span></li>
+                    <li><strong>HashiCorp Certified: Terraform Associate</strong> <span>(Expected/Completed 2026)</span></li>
+                </ul>
+            </section>
+
+            <section id="skills" class="resume-section">
+                <h3>Technical Skills</h3>
+                <div class="skills-grid">
+                    <div><strong>Cloud Platforms:</strong> AWS (S3, CloudFront, Lambda, DynamoDB, API Gateway, IAM, Route 53, EC2, VPC)</div>
+                    <div><strong>DevOps & IaC:</strong> Terraform, GitHub Actions, CI/CD Pipelines, GitOps, OIDC Security</div>
+                    <div><strong>Programming & Scripting:</strong> Python, JavaScript, Bash, SQL, HTML/CSS</div>
+                    <div><strong>Testing & Quality:</strong> Pytest, Moto (AWS Mocking), Flake8, Black, TFLint</div>
+                </div>
+            </section>
+
+            <section id="projects" class="resume-section">
+                <h3>Engineering Projects</h3>
+                
+                <article class="job">
+                    <div class="job-header">
+                        <h4>Full-Stack Serverless Cloud Application</h4>
+                        <a href="https://github.com/chfenn96/aws-terraform-serverless-resume" target="_blank" class="repo-link">View Repository</a>
+                    </div>
+                    <div class="tech-tags">
+                        <span>AWS</span><span>Terraform</span><span>Python</span><span>GitHub Actions</span><span>Pytest</span>
+                    </div>
+                    <ul class="job-bullets">
+                        <li><strong>Architected</strong> a serverless web application serving static assets via <strong>S3</strong> and <strong>CloudFront</strong>, utilizing Origin Access Control (OAC) for zero-trust security.</li>
+                        <li><strong>Provisioned 100% of infrastructure</strong> using <strong>Terraform</strong>, migrating the remote state to an encrypted S3 backend with DynamoDB locking to simulate team-based collaboration.</li>
+                        <li><strong>Developed</strong> a Python <strong>Lambda</strong> function connected to <strong>API Gateway</strong> to execute atomic updates on a <strong>DynamoDB</strong> NoSQL database.</li>
+                        <li><strong>Engineered a Fail-Fast CI/CD pipeline</strong> using <strong>GitHub Actions</strong> and <strong>OIDC federated identity</strong>, ensuring secretless, automated deployments.</li>
+                        <li><strong>Achieved 100% test coverage</strong> using `pytest` and `moto` to mock AWS environments, gating Terraform deployments behind successful static analysis (`tflint`, `flake8`).</li>
+                    </ul>
+                </article>
+
+                <!-- Placeholder for next project -->
+                <article class="job">
+                    <div class="job-header">
+                        <h4>Highly Available 3-Tier Enterprise Architecture</h4>
+                        <span class="date">Planned</span>
+                    </div>
+                    <div class="tech-tags">
+                        <span>VPC</span><span>EC2</span><span>ALB</span><span>RDS</span>
+                    </div>
+                    <ul class="job-bullets">
+                        <li>Designed a custom AWS VPC with public and private subnets across multiple Availability Zones.</li>
+                        <li>Configured Application Load Balancers (ALB) and Auto Scaling Groups for EC2 web servers to ensure fault tolerance.</li>
+                        <li>Deployed a secure, private Amazon RDS MySQL database instance.</li>
+                    </ul>
+                </article>
+            </section>
+
+            <section id="education" class="resume-section">
+                <h3>Education</h3>
+                <article class="education">
+                    <div class="job-header">
+                        <h4>Bachelor of Science in Computer Science</h4>
+                        <span class="date">Graduated 2022</span>
+                    </div>
+                    <p>Florida Atlantic University, Boca Raton, FL</p>
+                </article>
+            </section>
+        </main>
 
         <footer>
-            <p>Total Visitors: <span id="counter">Loading...</span></p>
-        </section>
+            <div class="visitor-stats">
+                <p>Unique Page Views: <span id="counter" class="counter-badge">Loading...</span></p>
+            </div>
+        </footer>
     </div>
-
     <script src="main.js"></script>
 </body>
 </html>

@@ -1,48 +1,107 @@
 :root {
-    --primary: #232f3e; /* AWS Dark Blue */
-    --accent: #ff9900;  /* AWS Orange */
-    --text: #333;
-    --bg: #f4f4f9;
+    --text-primary: #111827;
+    --text-secondary: #4b5563;
+    --accent-color: #2563eb;
+    --bg-body: #f3f4f6;
+    --bg-card: #ffffff;
+    --border-color: #e5e7eb;
 }
 
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--bg);
-    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-primary);
     line-height: 1.6;
-    margin: 0;
-    padding: 20px;
+    padding: 2rem 1rem;
 }
 
 .container {
-    max-width: 800px;
-    margin: auto;
-    background: white;
-    padding: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--bg-card);
+    padding: 3rem 4rem;
     border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 header {
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 1.5rem;
+    margin-bottom: 2rem;
     text-align: center;
-    border-bottom: 2px solid var(--primary);
-    padding-bottom: 20px;
-    margin-bottom: 30px;
 }
 
-h1 { color: var(--primary); margin: 0; }
-h2 { color: var(--primary); border-left: 4px solid var(--accent); padding-left: 10px; }
+h1 { font-size: 2.5rem; font-weight: 700; letter-spacing: -0.025em; }
+h2 { font-size: 1.25rem; font-weight: 500; color: var(--accent-color); margin-top: 0.25rem; }
 
-.contact a { color: var(--accent); text-decoration: none; font-weight: bold; }
+.contact-links { margin-top: 1rem; font-size: 0.95rem; color: var(--text-secondary); }
+.contact-links a { color: var(--accent-color); text-decoration: none; font-weight: 500; }
+.contact-links a:hover { text-decoration: underline; }
+
+.resume-section { margin-bottom: 2rem; }
+
+h3 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Skills & Certs */
+.cert-list, .skills-grid { list-style-type: none; }
+.cert-list li, .skills-grid div { margin-bottom: 0.5rem; color: var(--text-secondary); }
+.cert-list li span { float: right; font-size: 0.9em; }
+.skills-grid strong { color: var(--text-primary); display: inline-block; width: 220px; }
+
+/* Projects */
+.job { margin-bottom: 1.5rem; }
+.job-header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 0.25rem; }
+.job-header h4 { font-size: 1.1rem; font-weight: 600; }
+.repo-link { font-size: 0.9rem; color: var(--accent-color); text-decoration: none; font-weight: 600; }
+.repo-link:hover { text-decoration: underline; }
+.date { font-size: 0.9rem; color: var(--text-secondary); font-weight: 500; }
+
+.tech-tags { margin-bottom: 0.75rem; }
+.tech-tags span {
+    background-color: #eff6ff;
+    color: #1e40af;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    margin-right: 0.5rem;
+    display: inline-block;
+}
+
+.job-bullets { padding-left: 1.25rem; color: var(--text-secondary); }
+.job-bullets li { margin-bottom: 0.4rem; }
+.job-bullets strong { color: var(--text-primary); }
 
 footer {
-    margin-top: 50px;
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-color);
     text-align: center;
-    font-size: 0.9em;
-    color: #666;
 }
 
-#counter {
-    font-weight: bold;
-    color: var(--accent);
+.counter-badge {
+    background-color: #eff6ff;
+    color: var(--accent-color);
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+/* Perfect Print Formatting */
+@media print {
+    body { background-color: #fff; padding: 0; }
+    .container { box-shadow: none; padding: 0; max-width: 100%; }
+    .tech-tags span { border: 1px solid #ccc; background-color: transparent; color: #000; }
+    footer { display: none; }
 }

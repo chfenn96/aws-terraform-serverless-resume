@@ -61,3 +61,19 @@ def test_lambda_handler_error(aws_credentials):
         response = lambda_handler({}, {})
         assert response["statusCode"] == 500
         assert "Internal Server Error" in response["body"]
+
+
+# TEST 4: Read Only Mode (Simulate by passing a query parameter that tells the handler not to increment)
+def test_lambda_handler_read_only(dynamodb_setup):
+    from app import lambda_handler
+
+    # Seed table
+    dynamodb_setup.Table("VisitorCount").put_item(Item={"id": "visitors", "count": 10})
+
+    # Simulate a "Read Only" event (increment=false)
+    event = {"queryStringParameters": {"increment": "false"}}
+    response = lambda_handler(event, {})
+    body = json.loads(response["body"])
+
+    assert response["statusCode"] == 200
+    assert body["count"] == 10  # Should NOT be 11

@@ -13,16 +13,23 @@ def lambda_handler(event, context):
     try:
         table = get_table()
 
-        # Atomic update: Increments even if the item doesn't exist yet
-        response = table.update_item(
-            Key={"id": "visitors"},
-            UpdateExpression="ADD #c :inc",
-            ExpressionAttributeNames={"#c": "count"},
-            ExpressionAttributeValues={":inc": 1},
-            ReturnValues="UPDATED_NEW",
-        )
+        # Check if the frontend passed '?action=view' in the URL
+        query_params = event.get("queryStringParameters") or {}
 
-        new_count = response["Attributes"]["count"]
+        if query_params.get("action") == "view":
+            # READ-ONLY: Just get the current count without adding to it
+            response = table.get_item(Key={"id": "visitors"})
+            new_count = response.get("Item", {}).get("count", 0)
+        else:
+            # INCREMENT: Add 1 to the database
+            response = table.update_item(
+                Key={"id": "visitors"},
+                UpdateExpression="ADD #c :inc",
+                ExpressionAttributeNames={"#c": "count"},
+                ExpressionAttributeValues={":inc": 1},
+                ReturnValues="UPDATED_NEW",
+            )
+            new_count = response["Attributes"]["count"]
 
         return {
             "statusCode": 200,
