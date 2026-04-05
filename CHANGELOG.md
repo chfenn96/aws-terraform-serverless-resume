@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - [ ] Phase 9: Final Polish.
 
+## [1.9.1] - 2026-04-05
+### Fixed
+- Suppressed upstream DeprecationWarnings from `botocore` in the Python 3.12 environment to ensure clean CI/CD logs.
+
 ## [1.9.0] - 2026-04-05
 ### Added
 - **AI/ATS Optimization:** Implemented deeply nested JSON-LD schema (Schema.org) for automated recruiter parsing and AI search engine optimization.
