@@ -70,8 +70,8 @@ def test_lambda_handler_read_only(dynamodb_setup):
     # Seed table
     dynamodb_setup.Table("VisitorCount").put_item(Item={"id": "visitors", "count": 10})
 
-    # Simulate a "Read Only" event (increment=false)
-    event = {"queryStringParameters": {"increment": "false"}}
+    # MATCH THE CONTRACT: Use 'action': 'view' as defined in app.py
+    event = {"queryStringParameters": {"action": "view"}}
     response = lambda_handler(event, {})
     body = json.loads(response["body"])
 
