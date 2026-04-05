@@ -175,11 +175,15 @@ resource "aws_iam_role_policy" "lambda_dynamo_policy" {
 
 # 12. Create the Lambda Function
 resource "aws_lambda_function" "visitor_counter" {
-  filename      = data.archive_file.lambda_zip.output_path
-  function_name = "visitor_counter_func"
-  role          = aws_iam_role.iam_for_lambda.arn
-  handler       = "app.lambda_handler" # File name is app, function is lambda_handler
-  runtime       = "python3.12"
+  filename         = data.archive_file.lambda_zip.output_path
+  
+  # Force Terraform to update AWS if app.py changes
+  source_code_hash = data.archive_file.lambda_zip.output_base64sha256 
+  
+  function_name    = "visitor_counter_func"
+  role             = aws_iam_role.iam_for_lambda.arn
+  handler          = "app.lambda_handler" 
+  runtime          = "python3.12"
 
   environment {
     variables = {

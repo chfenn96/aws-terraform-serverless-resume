@@ -12,6 +12,7 @@ const handleVisitorCount = async () => {
     
     // 2. Check localStorage
     const hasVisited = localStorage.getItem('resume_visited');
+    console.log("Localhost:", isLocalhost, "Already Visited:", !!hasVisited);
     
     // 3. The Guard: If testing locally OR they have visited, just "View"
     // Prevents local dev work from adding to total count
@@ -20,18 +21,17 @@ const handleVisitorCount = async () => {
         fetchUrl = `${API_URL}?action=view`;
     }
 
-    // 4. Pre-emptive Strike: If this is a real visitor, set the flag IMMEDIATELY
-    // Don't wait for the fetch to succeed. This kills the race condition.
-    if (!isLocalhost && !hasVisited) {
-        localStorage.setItem('resume_visited', 'true');
-    }
-
     try {
         const response = await fetch(fetchUrl);
         const data = await response.json();
         document.getElementById('counter').innerText = data.count;
+
+        // ONLY set the flag if this was a fresh, non-localhost visit that successfully incremented
+        if (!isLocalhost && !hasVisited) {
+            localStorage.setItem('resume_visited', 'true');
+            console.log("First time visitor! Flag set in localStorage.");
+        }
     } catch (error) {
         console.error("API Error:", error);
-        document.getElementById('counter').innerText = "Unvailable";
     }
 }
