@@ -8,6 +8,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - [ ] Phase 9: Final Polish.
 
+## [1.9.0] - 2026-04-05
+### Added
+- **AI/ATS Optimization:** Implemented deeply nested JSON-LD schema (Schema.org) for automated recruiter parsing and AI search engine optimization.
+- **Unique Visitor Tracking:** Integrated browser `localStorage` to distinguish between new and returning visitors.
+- **Localhost Guard:** Added logic to detect `localhost/127.0.0.1` environments, preventing developer testing from inflating production metrics.
+- **Modern UI/UX:** Overhauled the resume with a professional "Tech-Pill" design and high-readability typography.
+- **Print Formatting:** Added a `@media print` stylesheet to ensure the website exports to a perfectly formatted 1-page PDF resume.
+
+### Changed
+- **Backend API Contract:** Updated the Python Lambda function to handle conditional logic (read vs. increment) based on URL query parameters.
+- **Data Integrity:** Refactored the frontend `fetch` cycle to set visitor flags pre-emptively, eliminating race conditions during page refreshes.
+
+### Fixed
+- Resolved an issue where the visitor counter would increment multiple times during local development due to Live Server auto-refreshes.
+
 ## [1.8.2] - 2026-04-04
 ### Changed
 - **Documentation:** Overhauled the "Architecture Design" section in `README.md` to use a Mermaid.js diagram.
