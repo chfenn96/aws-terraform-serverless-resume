@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 - [ ] Phase 9: Final Polish.
 
+## [1.9.2] - 2026-04-05
+### Fixed
+- **Deployment Persistence:** Added `source_code_hash` to the Lambda resource, ensuring Terraform correctly detects and deploys Python code changes.
+- **Query String Forwarding:** Updated CloudFront configuration to pass URL parameters (e.g., `?action=view`) to the backend API.
+- **Visitor Logic Synchronization:** Refactored frontend and backend contract to ensure unique counts are handled accurately without race conditions.
+
+### Added
+- **UI Polish:** Integrated an SVG favicon into the application header for improved browser-tab identification.
+
 ## [1.9.1] - 2026-04-05
 ### Fixed
 - Suppressed upstream DeprecationWarnings from `botocore` in the Python 3.12 environment to ensure clean CI/CD logs.
